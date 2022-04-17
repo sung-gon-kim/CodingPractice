@@ -1,4 +1,4 @@
 build_test_program(
   NAME strings.exe
-  SRCS palindrome.cpp
+  SRCS palindrome.cpp itos.cpp
 )
