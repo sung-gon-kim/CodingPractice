@@ -38,4 +38,15 @@ void removeNext(std::shared_ptr<ListNode<T>> node) {
   }
 }
 
+template <typename T>
+std::size_t length(std::shared_ptr<ListNode<T>> node) {
+  std::size_t size = 0;
+  std::shared_ptr<ListNode<T>> current = node;
+  while (current) {
+    size++;
+    current = current->next;
+  }
+  return size;
+}
+
 #endif  // INCLUDE_LIST_LIST_HPP_

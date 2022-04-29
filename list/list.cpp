@@ -26,3 +26,9 @@ TEST_F(ListTest, testRemoveNextNode) {
   removeNext(node);
   EXPECT_EQ(nullptr, node->next);
 }
+
+TEST_F(ListTest, testLength) {
+  std::shared_ptr<ListNode<int>> empty;
+  EXPECT_EQ(0, length(empty));
+  EXPECT_EQ(2, length(node));
+}
