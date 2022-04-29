@@ -5,8 +5,7 @@
 class ListTest : public ::testing::Test {
 protected:
   void SetUp() override {
-    node = make_list_node(123);
-    append(node, make_list_node(456));
+    node = newList(123, 456);
   }
 
   std::shared_ptr<ListNode<int>> node;
@@ -31,4 +30,12 @@ TEST_F(ListTest, testLength) {
   std::shared_ptr<ListNode<int>> empty;
   EXPECT_EQ(0, length(empty));
   EXPECT_EQ(2, length(node));
+}
+
+TEST_F(ListTest, testMakeList) {
+  node = newList(3, 2, 1);
+  EXPECT_EQ(3, length(node));
+  EXPECT_EQ(3, node->data);
+  EXPECT_EQ(2, node->next->data);
+  EXPECT_EQ(1, node->next->next->data);
 }
