@@ -1,4 +1,5 @@
 #include <memory>
+#include <string>
 #include <gtest/gtest.h>
 #include "list/list.hpp"
 
@@ -6,6 +7,19 @@ class ListTest : public ::testing::Test {
 protected:
   void SetUp() override {
     node = newList(123, 456);
+  }
+
+  void EXPECT_LIST_EQ(const std::string& expected, std::shared_ptr<ListNode<int>> node) {
+    std::string actual = "";
+    if (node) {
+      actual += std::to_string(node->data);
+    }
+    node = node->next;
+    while (node) {
+      actual += " " + std::to_string(node->data);
+      node = node->next;
+    }
+    EXPECT_EQ(expected, actual);
   }
 
   std::shared_ptr<ListNode<int>> node;
@@ -38,4 +52,5 @@ TEST_F(ListTest, testMakeList) {
   EXPECT_EQ(3, node->data);
   EXPECT_EQ(2, node->next->data);
   EXPECT_EQ(1, node->next->next->data);
+  EXPECT_LIST_EQ("3 2 1", node);
 }
