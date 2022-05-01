@@ -1,6 +1,7 @@
 #include <memory>
 #include <string>
 #include <gtest/gtest.h>
+#include "fixture.hpp"
 #include "list/list.hpp"
 
 class ListTest : public ::testing::Test {
@@ -9,20 +10,7 @@ protected:
     node = newList(123, 456);
   }
 
-  void EXPECT_LIST_EQ(const std::string& expected, std::shared_ptr<ListNode<int>> node) {
-    std::string actual = "";
-    if (node) {
-      actual += std::to_string(node->data);
-    }
-    node = node->next;
-    while (node) {
-      actual += " " + std::to_string(node->data);
-      node = node->next;
-    }
-    EXPECT_EQ(expected, actual);
-  }
-
-  std::shared_ptr<ListNode<int>> node;
+  IntegerList node;
 };
 
 TEST_F(ListTest, testMakeListNode) {
@@ -41,7 +29,7 @@ TEST_F(ListTest, testRemoveNextNode) {
 }
 
 TEST_F(ListTest, testLength) {
-  std::shared_ptr<ListNode<int>> empty;
+  IntegerList empty;
   EXPECT_EQ(0, length(empty));
   EXPECT_EQ(2, length(node));
 }
