@@ -10,7 +10,7 @@
 using IntegerList = std::shared_ptr<ListNode<int>>;
 
 
-void EXPECT_LIST_EQ(const std::string& expected, IntegerList node) {
+static void EXPECT_LIST_EQ(const std::string& expected, IntegerList node) {
   std::string actual = "";
   if (node) {
     actual += std::to_string(node->data);
