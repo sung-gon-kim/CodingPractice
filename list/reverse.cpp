@@ -1,4 +1,5 @@
 #include <memory>
+#include <stack>
 #include <string>
 #include <gtest/gtest.h>
 #include "fixture.hpp"
@@ -26,4 +27,27 @@ IntegerList reverseList(IntegerList node, int start, int end) {
 TEST(Reverse, testReverseList) {
   auto node = newList(1, 2, 3, 4, 5);
   EXPECT_LIST_EQ("1 4 3 2 5", reverseList(node, 2, 4));
+}
+
+std::string reversed(IntegerList node) {
+  std::string s;
+  std::stack<int> stack;
+  while (node) {
+    stack.push(node->data);
+    node = node->next;
+  }
+  if (!stack.empty()) {
+    s += std::to_string(stack.top());
+    stack.pop();
+  }
+  while (!stack.empty()) {
+    s += " " + std::to_string(stack.top());
+    stack.pop();
+  }
+  return s;
+}
+
+TEST(Reverse, testReversed) {
+  auto node = newList(1, 2, 3, 4, 5);
+  EXPECT_EQ("5 4 3 2 1", reversed(node));
 }
