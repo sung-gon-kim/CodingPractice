@@ -1,4 +1,4 @@
 build_test_program(
   NAME stack.exe
-  SRCS rpn.cpp
+  SRCS rpn.cpp bracket.cpp
 )
